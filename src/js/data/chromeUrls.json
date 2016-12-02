@@ -1,0 +1,234 @@
+[
+    {
+        "url": "chrome://chrome-urls",
+        "description": "All available Chrome urls, up to date."
+    },
+    {
+        "url": "chrome://accessibility",
+        "description": "This command shows the accessibility information for each Chrome tab. Here, you are also given the option to turn it ON or OFF."
+    },
+    {
+        "url": "chrome://appcache-internals",
+        "description": "Appache-internals tells you about the app-cached websites and the storage space used by them."
+    },
+    {
+        "url": "chrome://apps",
+        "description": "It shows you all the applications installed in Chrome web browser."
+    },
+    {
+        "url": "chrome://blob-internals",
+        "description": "This command shows you the information about blobs (Binary Large Objects)."
+    },
+    {
+        "url": "chrome://bookmarks",
+        "description": "It shows your web browser’s bookmarks and options to manage them. No points for guessing, obviously."
+    },
+    {
+        "url": "chrome://cache",
+        "description": "Cache command is used to list all the cached items like images, website data, and scripts."
+    },
+    {
+        "url": "chrome://chrome",
+        "description": "It opens the About page of your Google Chrome web browser that tells the current version and the available updates."
+    },
+    {
+        "url": "chrome://chrome-urls",
+        "description": "This URL displays the complete list of Chrome URLs."
+    },
+    {
+        "url": "chrome://components",
+        "description": "Components command loads a list of all Chrome components like CRLset, recovery, pnacl etc.. Here, you have the option to check for individual updates."
+    },
+    {
+        "url": "chrome://copresence",
+        "description": "It shows information regarding Google Copresence which allows your web browser to talk to nearby devices."
+    },
+    {
+        "url": "chrome://crashes",
+        "description": "Here, you can see details of all the recent crashes."
+    },
+    {
+        "url": "chrome://credits",
+        "description": "It’s a long list of technologies included in Chrome and their creators."
+    },
+    {
+        "url": "chrome://device-log",
+        "description": "Device log shows a log of different device related events."
+    },
+    {
+        "url": "chrome://devices",
+        "description": "It presents a list of different physical or virtual devices connected to Chrome. You also have the option to manage Google Cloud Print."
+    },
+    {
+        "url": "chrome://dns",
+        "description": "Just in case prefetching is enabled in your web browser, this command loads the prefetched DNS records."
+    },
+    {
+        "url": "chrome://downloads",
+        "description": "All your downloads are listed here."
+    },
+    {
+        "url": "chrome://extensions",
+        "description": "This page lets you manage all the extensions installed in your web browser."
+    },
+    {
+        "url": "chrome://flags",
+        "description": "Flags is the most interesting Chrome URL. Here, you can access different experimental features."
+    },
+    {
+        "url": "chrome://flash",
+        "description": "You can find information about Flash plugin and Chrome-Flash integration."
+    },
+    {
+        "url": "chrome://gcm-internals",
+        "description": "This page displays information about Google Cloud Messaging."
+    },
+    {
+        "url": "chrome://gpu",
+        "description": "Here, you get to know about your video card and graphics feature status."
+    },
+    {
+        "url": "chrome://help",
+        "description": "Just in case you need support or more information, it opens Google’s About page."
+    },
+    {
+        "url": "chrome://histograms",
+        "description": "You can find all the details regarding Histograms here."
+    },
+    {
+        "url": "chrome://history",
+        "description": "History shows the browsing history and option to clear browsing data."
+    },
+    {
+        "url": "chrome://indexeddb-internals",
+        "description": "Here, you can see all storage instance of Chrome’s DB."
+    },
+    {
+        "url": "chrome://inspect",
+        "description": "This option allows you inspect different elements like extensions and pages."
+    },
+    {
+        "url": "chrome://invalidations",
+        "description": "It shows invalidations debug information."
+    },
+    {
+        "url": "chrome://local-state",
+        "description": "Local state page lists all features and related information."
+    },
+    {
+        "url": "chrome://media-internals",
+        "description": "While playing media, it shows media information."
+    },
+    {
+        "url": "chrome://nacl",
+        "description": "It shows information about Chrome’s NaCl plugin."
+    },
+    {
+        "url": "chrome://net-internals",
+        "description": "If you wish to see detailed network related information like SPDY, HSTS, HTTP/2, DNS, you need to visit this page."
+    },
+    {
+        "url": "chrome://network-errors",
+        "description": "It shows the network error message."
+    },
+    {
+        "url": "chrome://newtab",
+        "description": "It open a new tab."
+    },
+    {
+        "url": "chrome://omnibox",
+        "description": "It shows Omnibar (search box) input results like search, shortcuts, and history."
+    },
+    {
+        "url": "chrome://password-manager-internals",
+        "description": "This page stores all the password manager logs."
+    },
+    {
+        "url": "chrome://plugins",
+        "description": "Google Chrome’s all installed plugins and related options are listed here."
+    },
+    {
+        "url": "chrome://policy",
+        "description": "All the currently active policies are listed on this page."
+    },
+    {
+        "url": "chrome://predictors",
+        "description": "Based on your previous activities, a list of auto-complete and resource predictions are shown on this page."
+    },
+    {
+        "url": "chrome://print",
+        "description": "It’s Chrome’s print preview tab."
+    },
+    {
+        "url": "chrome://profiler",
+        "description": "It shows the profile tracking data."
+    },
+    {
+        "url": "chrome://quota-internals",
+        "description": "It shows you the data about available disk space for Chrome profile directory, and quota details."
+    },
+    {
+        "url": "chrome://serviceworker-internals",
+        "description": "It lists all Service Workers register by your web browser. You are also given an option to unregister."
+    },
+    {
+        "url": "chrome://settings",
+        "description": "It’s Google Chrome’s main settings page."
+    },
+    {
+        "url": "chrome://signin-internals",
+        "description": "This page shows you Chrome’s account activity details, including last sign-in, access tokens etc."
+    },
+    {
+        "url": "chrome://suggestions",
+        "description": "It hosts all suggestions shown at New Tab page."
+    },
+    {
+        "url": "chrome://supervised-user-internals",
+        "description": "Shows you supervised user information."
+    },
+    {
+        "url": "chrome://sync-internals",
+        "description": "If sync is enabled, this page lists all the details about it."
+    },
+    {
+        "url": "chrome://system",
+        "description": "It shows you information about your computer’s operating system, Chrome version etc."
+    },
+    {
+        "url": "chrome://terms",
+        "description": "It shows you Google Chrome usage terms and conditions."
+    },
+    {
+        "url": "chrome://thumbnails",
+        "description": "Based on your browsing history, this pages hosts all top websites’ URLs, with and without their thumbnails."
+    },
+    {
+        "url": "chrome://tracing",
+        "description": "If browsing history is enabled, it records your browsing history."
+    },
+    {
+        "url": "chrome://translate-internals",
+        "description": "It shows you the translation preferences."
+    },
+    {
+        "url": "chrome://user-actions",
+        "description": "Useful for debugging, it shows all the current user actions."
+    },
+    {
+        "url": "chrome://version",
+        "description": "It displays detailed information about your Google Chrome web browser."
+    },
+    {
+        "url": "chrome://view-http-cache",
+        "description": "It shows you all the websites that you’ve browsed in the past."
+    },
+    {
+        "url": "chrome://webrtc-internals",
+        "description": "It creates a dump by downloading stats data and PeerConnection updates."
+    },
+    {
+        "url": "chrome://webrtc-logs",
+        "description": "The recently captured WebRTC logs are listed here."
+    }
+]
