@@ -1,5 +1,5 @@
 ## Omni Plus
-Ultimate Omnibox tools for Chrome.
+Great tools in one line.
 
 The goal of this extension is to provide some handy utilities that can be accessed right in the Chrome Omnibox.
 > ###### Test it in Chrome
@@ -9,36 +9,21 @@ The goal of this extension is to provide some handy utilities that can be access
 
 ###### Core:
 
-`namespace Omnibox`
+`namespace Omnibox` Input listener and dispatcher. Also handling new command register.
 
-Input listener and dispatcher. Also handling new command register.
+`namespace Notification` Send notifications about results. Provides pre-defined notification types.
 
- `namespace Notification`
-
-Send notifications about results. Provides pre-defined notification types.
-
- `namespace Messaging`
-
-*Handling external command register.*
+`namespace Messaging` *Handling external command register.*
 
 ###### Pre-defined commands:
 
-`namespace Management`
+`namespace Management` Extensions related stuff, launch, enable/disable.
 
-Extensions related stuff, launch, enable/disable.
+`namespace BrowserBasic` History, bookmark, top sites, tabs, *Chrome urls*.
 
-`namespace BrowserBasic`
+`namespace Time` *Set a reminder*.
 
-History, bookmark, top sites, tabs, *Chrome urls*.
-
-`namespace Time`
-
-*Set a reminder*.
-
-`namespace Misc`
-
-Exverything else.
-
+`namespace Misc` Exverything else.
 
 
 #### How to extend:
@@ -101,4 +86,4 @@ class providerItem {
 }
 ```
 
-When building the `input()` and `accept()` , there're some handy functions and misc stuff provided. Could be accessed using `this.` or `let self = this; self.`
+When writing the `input()` and `accept()` , there're some handy functions and misc stuff provided. Could be accessed using `this.` or `let self = this; self.`

@@ -1,7 +1,7 @@
 {
   "name": "omni-plus",
   "version": "1.0.0",
-  "description": "The ultimate omnibox tools collection.",
+  "description": "Great tools in one line.",
   "main": "",
   "scripts": {
     "start": "webpack --config webpack.config.ts"

@@ -22,6 +22,7 @@ let nerdamer = require('nerdamer');
 let clipboard = require('clipboard-js');
 let loremIpsum = require('lorem-ipsum');
 //let convertPinyin = require('convertPinyin');
+function i18n (name: string) { return chrome.i18n.getMessage(name); }
 
 namespace Omnibox {
     chrome.omnibox.onInputChanged.addListener(inputChanged);
@@ -114,6 +115,10 @@ namespace Omnibox {
         extract(content: string) {
             return content.replace(new RegExp('^\\s*'+ this.key + '\\b\\s*', 'i'), '');
             //return new RegExp('^\\s*'+ this.key + '\\b\\s*(\\.*)$', 'i').exec(content);
+        }
+
+        localize(type: 'des' | 'info') {
+            return i18n(`key_${type}_${this.key.replace(' ', '_')}`);
         }
 
         _() {
