@@ -20,16 +20,6 @@
         "persistent": false
     },
     
-    /*"externally_connectable": {
-        "ids": [
-            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-        ],
-        "matches": [
-            "*://*.example.com/*"
-        ],
-        "accepts_tls_channel_id": false
-    },*/
-    
     "permissions": [
         "activeTab",
         "notifications",

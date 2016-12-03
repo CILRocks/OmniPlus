@@ -138,7 +138,7 @@ namespace Omnibox {
                         match = true;
                         if (provider.input) provider.input(provider.extract(text), suggest);
                         else if (provider.format) {
-                            if (!provider.format.reg.test(provider.extract(text))) suggest([{content: `${provider.key} `, description: `Correct format: {${provider.format}}`}]);
+                            if (!provider.format.reg.test(provider.extract(text))) suggest([{content: `${provider.key} `, description: `Correct format: {${provider.format.info}}`}]);
                             else suggest([{content: `${provider.key} `, description: provider.description}]);
                         } else suggest([{content: `${provider.key} `, description: provider.description}]);
                     } else {
