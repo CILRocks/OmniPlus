@@ -64,7 +64,8 @@ When providing suggestions, there're three possible situations:
 
 2. No `input()` but has `format` 
 
-   Omni Plus will check the user input using `format.reg` , when user got things wrong, it'll sugegst `"Correct Fomat {format.info}"`.
+   Omni Plus will check the user input using `format.reg` , when user got things wrong, it'll suggest `"Correct Fomat {format.info}"`.
+   If everyting is ok, Omni Plus will suggest the `description`.
 
 3. No `input()` and `format`
 
