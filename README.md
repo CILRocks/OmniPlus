@@ -46,8 +46,7 @@ Exverything else.
 ```javascript
 Omnibox.register({
   key: string, //The command text
-  reg?: RegExp, //The regEx for evaluating user input
-  format?: string, //The help text of correct input format, if any
+  format?: { reg: RegExp, info: string }, //The help text of correct input format, if any
   description: string, //An explaination of what this command gonna do
   input?: (content: string, suggest: (suggesResults: chrome.omnibox.SuggestResult[]) => void) => void, //This function receive user input and return suggestions
   accept: (content?: string) => void, //Once user hit enter, this function handles everything else
@@ -61,11 +60,11 @@ When providing suggestions, there're three possible situations:
 
    Whenever `input()` function is provided, Omni Plus will use it to provide suggestions.
 
-2. No `input()` but  `reg` && `format` 
+2. No `input()` but has `format` 
 
-   Omni Plus will check the user input using `reg` , when user got things wrong, it'll sugegst `Correct Fomat {format}`.
+   Omni Plus will check the user input using `format.reg` , when user got things wrong, it'll sugegst `"Correct Fomat {format.info}"`.
 
-3. No `input()` and `reg` || `format`
+3. No `input()` and `format`
 
    Omni Plus will use `description` as the only suggestion.
 
@@ -76,8 +75,7 @@ All registered command will be presented as `new providerItem(info)`
 ```javascript
 class providerItem {
   public key: string;
-  public reg?: RegExp;
-  public format?: string;
+  public format?: { reg: RegExp, info: string };
   public description: string;
   public input?: (content: string, suggest: (suggesResults: chrome.omnibox.SuggestResult[]) => void) => void;
   public accept: (content?: string) => void;
@@ -95,7 +93,7 @@ class providerItem {
     callback: (response: chrome.omnibox.SuggestResult[]) => void) => void;
   //return input content by removing key text
   extract(content: string): string;
-  //destroy provider
+  //self destroying
   _() => void;
 }
 ```
