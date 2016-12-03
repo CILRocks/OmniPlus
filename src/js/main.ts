@@ -16,8 +16,7 @@ namespace Omnibox {
 
     interface providerInfo {
         key: string,
-        reg?: RegExp,
-        format?: string,
+        format?: {'reg': RegExp, 'info': string},
         description: string,
         input?: (content: string, suggest: (suggesResults: chrome.omnibox.SuggestResult[]) => void) => void,
         accept: (content?: string) => void,
@@ -36,8 +35,7 @@ namespace Omnibox {
     
     class providerItem {
         public key: string;
-        public reg?: RegExp;
-        public format?: string;
+        public format?: {'reg': RegExp, 'info': string};
         public description: string;
         public input?: (content: string, suggest: (suggesResults: chrome.omnibox.SuggestResult[]) => void) => void;
         public accept: (content?: string) => void;
@@ -47,7 +45,6 @@ namespace Omnibox {
         
         constructor(info: providerInfo) {
             this.key = info.key;
-            this.reg = info.reg ? info.reg : null;
             this.format = info.format ? info.format : null;
             this.description = info.description;
             this.input = info.input ? info.input : null;
@@ -119,8 +116,10 @@ namespace Omnibox {
                     //if (new RegExp('^\\s*'+ this.key + '\\b\\s*', 'i').test(text)) {
                         match = true;
                         if (provider.input) provider.input(provider.extract(text), suggest);
-                        else if (provider.format && !provider.reg.test(provider.extract(text))) suggest([{content: `${provider.key} `, description: `Correct format: {${provider.format}}`}]);
-                        else suggest([{content: `${provider.key} `, description: provider.description}]);
+                        else if (provider.format) {
+                            if (!provider.format.reg.test(provider.extract(text))) suggest([{content: `${provider.key} `, description: `Correct format: {${provider.format}}`}]);
+                            else suggest([{content: `${provider.key} `, description: provider.description}]);
+                        } else suggest([{content: `${provider.key} `, description: provider.description}]);
                     } else {
                         if (index === providers.length - 1 && !match) {
                             cb();
@@ -161,7 +160,9 @@ namespace Omnibox {
         providers.forEach(function(provider, index) {
             if (text.includes(provider.key) && text.match(provider.key).index === 0) {
                 match = true;
-                provider.accept(provider.extract(text));
+                if (provider.format) {
+                    provider.format.reg.test(provider.extract(text)) ? provider.accept(provider.extract(text)) : Notification.error('Incorrect format', `Please use this format:\n{${provider.format}}`);
+                } else provider.accept(provider.extract(text));
             } else {
                 if (index === providers.length - 1 && !match) {
                     //let t = self.misc.encodeXml(text);
@@ -215,9 +216,7 @@ namespace Messaging {
     interface registerMessage {
         goal: string,
         key?: string,
-        regOnly?: boolean,
-        reg?: RegExp,
-        format?: string,
+        format?: { reg: RegExp, info: string },
         description?: string
     }
     function onMessage(message: registerMessage, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) {
@@ -229,11 +228,10 @@ namespace Messaging {
                             try {
                                 Omnibox.register({
                                     key: `/${message.key}`,
-                                    reg: message.reg ? message.reg : null,
                                     format: message.format ? message.format : null,
                                     description: message.description,
                                     extensionId: sender.id,
-                                    input: message.regOnly ? null : function(content, suggest) {
+                                    input: message.format ? null : function(content, suggest) {
                                         let self = this;
                                         send(self.extensionId, {
                                             from: 'omniPlus',
@@ -475,12 +473,11 @@ namespace BrowserBasic {
 namespace Time {
     Omnibox.register({
         key: 'reminder after',
-        reg: /^([1-9]|[1-9]\d+)\s*([sm])\s*(.*)?$/i,
-        format: 'count(>0) unit(s: seconds, m: minutes) content?',
+        format: { reg: /^([1-9]|[1-9]\d+)\s*([sm])\s*(.*)?$/i, info: 'count(>0) unit(s: seconds, m: minutes) content?' },
         description: 'Set a reminder after some time with optional text content',
         accept (content) {
             let self = this;
-            let exec = self.reg.exec(content);
+            let exec = self.format.reg.exec(content);
             let count = parseFloat(exec[1]);
             let unit = exec[2];
             let text = exec[3] ? exec[3] : `Your ${exec[1]+exec[1]} reminder.`;
@@ -582,28 +579,25 @@ namespace Misc {
     //generate random dummy text
     Omnibox.register({
         key: 'text random',
-        reg: /^([1-9]|\[1-9]\d+)\s*([wsp])\s*$/i,
-        format: 'count(>0) unit(w: words, s: sentences, p: paragraphs)',
+        format: { reg: /^([1-9]|\[1-9]\d+)\s*([wsp])\s*$/i, info: 'count(>0) unit(w: words, s: sentences, p: paragraphs)' },
         description: 'Generate random lorem-ipsum text',
         accept (content) {
             let self = this;
-            if (self.reg.test(content)) {
-                //dictionary of all units
-                interface unitsDict {
-                    [key: string]: string
-                };
-                let unitsDict: unitsDict = {
-                    w: 'words',
-                    s: 'sentences',
-                    p: 'paragraphs'
-                };
+            //dictionary of all units
+            interface unitsDict {
+                [key: string]: string
+            };
+            let unitsDict: unitsDict = {
+                w: 'words',
+                s: 'sentences',
+                p: 'paragraphs'
+            };
 
-                let exec = self.reg.exec(content);
-                let count: number = parseInt(exec[1]);
-                let unit: string = unitsDict[exec[2]]
-                clipboard.copy(loremIpsum({ count: count, units: unit }));
-                Notification.send('Random text generated', `Generated ${count} ${unit}.\nCopied to your clipboard`, 'random-text');
-            } else Notification.error('Formatting failed', 'Please use this format: {count(>0) unit(w: words, s: sentences, p: paragraphs)}');
+            let exec = self.format.reg.exec(content);
+            let count: number = parseInt(exec[1]);
+            let unit: string = unitsDict[exec[2]]
+            clipboard.copy(loremIpsum({ count: count, units: unit }));
+            Notification.send('Random text generated', `Generated ${count} ${unit}.\nCopied to your clipboard`, 'random-text');
         }
     });
 
@@ -611,20 +605,17 @@ namespace Misc {
     //caculate math expression
     Omnibox.register({
         key: 'calculate',
-        reg: /^(?:\d+\s*[/\+\-\*\(\)\^])+\s*(?:\d+)\)*\s*$/,
+        format: { reg: /^(?:\d+\s*[/\+\-\*\(\)\^])+\s*(?:\d+)\)*\s*$/, info: 'basic math expression with +-*/^() operators' },
         description: 'Calculate a math expression',
-        input (expression, suggest) {
-            if (expression.includes(' '))
-                suggest([{ content: `${this.key} `, description: 'Please do not include space in the expression'}]);
-        },
         accept (content) {
             try {
+                content.replace(/\s*/g, '');
                 let expression = nerdamer(content);
                 let result = expression.evaluate().text();
                 Notification.send(result, `Is the result of ${content}\nCopied to your clipboard.`, 'calculate');
                 clipboard.copy(result);
             } catch (e) {
-                Notification.error(`Unable to calculate ${content}`, `This expression is invalid.`);
+                Notification.error(`Unable to calculate ${content}`, `Details: ${e ? e : 'Invalid expression.'}`);
             }
         }
     });
