@@ -39,8 +39,8 @@ namespace Omnibox {
         public reg?: RegExp;
         public format?: string;
         public description: string;
-        public input?: any;
-        public accept: any;
+        public input?: (content: string, suggest: (suggesResults: chrome.omnibox.SuggestResult[]) => void) => void;
+        public accept: (content?: string) => void;
         public extensionId?: string;
         //misc functions and properties
         misc: any;
