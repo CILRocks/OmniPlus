@@ -2,6 +2,8 @@
 Ultimate Omnibox tools for Chrome.
 
 The goal of this extension is to provide some handy utilities that can be accessed right in the Chrome Omnibox.
+> ###### Test in in Chrome
+> Please run `npm start` or `webpack` at fisrt to make *dist/* available. Then drag *dist/* into Chrome.
 
 #### Basic outline:
 
