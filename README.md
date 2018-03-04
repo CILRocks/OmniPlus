@@ -1,4 +1,6 @@
 ## Omni Plus
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/JohnCido/OmniPlus.svg)](https://greenkeeper.io/)
 Great tools in one line.
 
 The goal of this extension is to provide some handy utilities that can be accessed right in the Chrome Omnibox.
