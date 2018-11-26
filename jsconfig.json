@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "target": "esnext",
+        "module": "commonjs",
+        "baseUrl": "./",
+        "paths": {
+            "@/*": [ "src/*" ]
+        }
+    },
+    "exclude": [
+        "node_modules",
+        "development",
+        "production",
+    ]
+}

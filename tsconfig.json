@@ -1,5 +1,15 @@
 {
     "compilerOptions": {
+        "typeRoots": [
+            "node_modules/@types",
+            "node_modules/web-ext-types"
+        ],
+        "lib": [
+            "dom",
+            "esnext",
+            "es7"
+        ],
+        "target": "esnext",
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
